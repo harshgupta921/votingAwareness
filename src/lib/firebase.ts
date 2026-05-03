@@ -21,7 +21,7 @@ const auth = getAuth(app);
 
 // Modern Firestore initialization with persistence
 const db = initializeFirestore(app, {
-  cache: persistentLocalCache({
+  localCache: persistentLocalCache({
     tabManager: persistentMultipleTabManager()
   })
 });
