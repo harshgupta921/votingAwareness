@@ -295,7 +295,7 @@ export default function MapPage() {
                         <div className="flex items-center gap-2">
                           {loc.type === 'home' ? <Home className="w-4 h-4 text-indigo-500" /> : <MapPin className="w-4 h-4 text-purple-500" />}
                           <h3 className="font-bold text-lg dark:text-white">{loc.label}</h3>
-                          {loc.isDefault && <CheckCircle2 className="w-4 h-4 text-emerald-500" title="Default Location" />}
+                          {loc.isDefault && <CheckCircle2 className="w-4 h-4 text-emerald-500" />}
                         </div>
                         <div className="flex gap-1">
                           <button 
