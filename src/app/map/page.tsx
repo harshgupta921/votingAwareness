@@ -235,7 +235,7 @@ export default function MapPage() {
                       <div className="flex justify-between items-start mb-2">
                         <div className="flex items-center gap-2">
                           <h3 className="font-bold text-lg dark:text-white">{booth.name}</h3>
-                          {booth.isRecommended && <Star className="w-4 h-4 fill-amber-400 text-amber-400" title="Recommended" />}
+                          {booth.isRecommended && <Star className="w-4 h-4 fill-amber-400 text-amber-400" />}
                         </div>
                         {user && (
                           <button 
