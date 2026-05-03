@@ -14,9 +14,16 @@ interface PremiumButtonProps {
   className?: string;
   onClick?: () => void;
   variant?: 'primary' | 'secondary' | 'outline';
+  size?: 'sm' | 'md' | 'lg';
 }
 
-export default function PremiumButton({ children, className = '', onClick, variant = 'primary' }: PremiumButtonProps) {
+export default function PremiumButton({ 
+  children, 
+  className = '', 
+  onClick, 
+  variant = 'primary',
+  size = 'md' 
+}: PremiumButtonProps) {
   const [ripples, setRipples] = useState<Ripple[]>([]);
 
   const addRipple = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -43,6 +50,14 @@ export default function PremiumButton({ children, className = '', onClick, varia
     }
   };
 
+  const getSizeStyles = () => {
+    switch (size) {
+      case 'sm': return 'px-4 py-2 text-sm';
+      case 'lg': return 'px-8 py-4 text-lg';
+      default: return 'px-6 py-3 text-base';
+    }
+  };
+
   return (
     <motion.button
       whileHover={{ scale: 1.05 }}
@@ -51,7 +66,7 @@ export default function PremiumButton({ children, className = '', onClick, varia
         addRipple(e);
         onClick?.();
       }}
-      className={`relative overflow-hidden px-8 py-4 rounded-2xl font-bold transition-all duration-300 ${getVariantStyles()} ${className}`}
+      className={`relative overflow-hidden rounded-2xl font-bold transition-all duration-300 ${getVariantStyles()} ${getSizeStyles()} ${className}`}
     >
       <span className="relative z-10">{children}</span>
       
