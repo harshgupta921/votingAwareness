@@ -50,7 +50,16 @@ function Particles({ count = 2000, isDark }: { count?: number; isDark: boolean }
   );
 }
 
-function FloatingBlob({ position, size, color, speed, distort, isDark }: any) {
+interface FloatingBlobProps {
+  position: [number, number, number];
+  size: number;
+  color: string;
+  speed: number;
+  distort: number;
+  isDark: boolean;
+}
+
+function FloatingBlob({ position, size, color, speed, distort, isDark }: FloatingBlobProps) {
   const mesh = useRef<THREE.Mesh>(null!);
   
   const time = useRef(0);

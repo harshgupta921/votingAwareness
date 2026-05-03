@@ -26,7 +26,7 @@ export default function HeroSection() {
 
   const item = {
     hidden: { opacity: 0, y: 30 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } }
+    show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] as any } }
   };
 
   return (
@@ -37,7 +37,7 @@ export default function HeroSection() {
         <motion.div
           initial={{ opacity: 0, scale: 0.8, y: -20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] as any }}
           className="inline-flex items-center gap-3 px-6 py-2.5 rounded-full bg-white/40 dark:bg-gray-900/40 backdrop-blur-xl border border-white/50 dark:border-gray-800/50 text-gray-900 dark:text-white mb-12 shadow-2xl group cursor-default"
         >
           <div className="relative">
@@ -73,7 +73,7 @@ export default function HeroSection() {
               <motion.div 
                 initial={{ width: 0 }}
                 animate={{ width: '100%' }}
-                transition={{ delay: 1.5, duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+                transition={{ delay: 1.5, duration: 1.2, ease: [0.16, 1, 0.3, 1] as any }}
                 className="absolute -bottom-4 left-0 h-3 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 rounded-full opacity-30 blur-[1px]"
               />
             </motion.span>

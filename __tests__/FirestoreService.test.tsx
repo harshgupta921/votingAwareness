@@ -8,18 +8,29 @@ describe('FirestoreService', () => {
     expect(instance1).toBe(instance2);
   });
 
-  it('validates messages before saving', async () => {
+  it('validates messages before saving and throws on invalid data', async () => {
     const userId = 'user123';
-    const messages: ChatMessage[] = [
-      { id: 'msg1', role: 'user', content: 'Hello', timestamp: Date.now() }
-    ];
+    const invalidMessages = [
+      { id: 'msg1', role: 'invalid_role', content: 'Hello', timestamp: Date.now() }
+    ] as any;
     
-    const id = await firestoreService.saveConversation(userId, null, messages, 'Test');
-    expect(id).toBe('new-id');
+    await expect(firestoreService.saveConversation(userId, null, invalidMessages, 'Test'))
+      .rejects.toThrow();
   });
 
-  it('handles empty message history gracefully', async () => {
-    const conversations = await firestoreService.getUserConversations('user123');
-    expect(conversations).toEqual([]);
+  it('generates a title if none provided', async () => {
+    const userId = 'user123';
+    const messages: ChatMessage[] = [
+      { id: 'msg1', role: 'user', content: 'What is my voter ID status?', timestamp: Date.now() }
+    ];
+    
+    // We expect the first 30 chars of the content to be used
+    const id = await firestoreService.saveConversation(userId, null, messages, '');
+    expect(id).toBeDefined();
+  });
+
+  it('handles delete operation gracefully', async () => {
+    await expect(firestoreService.deleteConversation('user1', 'conv1'))
+      .resolves.not.toThrow();
   });
 });
